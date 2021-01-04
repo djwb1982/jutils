@@ -4,7 +4,7 @@
     <groupId>com.agkit</groupId>
     <artifactId>jutils</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>${project.release.version}</version>
     <name>jutils</name>
 
     <properties>
@@ -13,6 +13,7 @@
         <maven.compiler.target>1.7</maven.compiler.target>
         <commons-collections>4.1</commons-collections>
         <springframework.version>5.2.2.RELEASE</springframework.version>
+        <project.release.version>1.0-SNAPSHOT</project.release.version>
     </properties>
 
     <dependencies>
@@ -22,10 +23,11 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>RELEASE</version>
+            <version>1.18.12</version>
             <scope>provided</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
@@ -66,6 +68,38 @@
             <artifactId>commonmark-ext-gfm-tables</artifactId>
             <version>0.8.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.7</version>
+        </dependency>
+        <!-- Gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.4</version>
+        </dependency>
     </dependencies>
-
+    <distributionManagement>
+        <repository>
+            <id>p2p-releases</id>
+            <url>
+                http://my.nexus.com:8081/repository/p2p-releases/
+            </url>
+        </repository>
+        <snapshotRepository>
+            <id>p2p-snapshots</id>
+            <url>
+                http://my.nexus.com:8081/repository/p2p-snapshots/
+            </url>
+        </snapshotRepository>
+    </distributionManagement>
+    <profiles>
+        <profile>
+            <id>product</id>
+            <properties>
+                <project.release.version>${project.release.version}</project.release.version>
+            </properties>
+        </profile>
+    </profiles>
 </project>
